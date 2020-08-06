@@ -1,4 +1,4 @@
-package ru.zackfox.myweather.data.network
+package ru.zackfox.myweather.data.remote.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response

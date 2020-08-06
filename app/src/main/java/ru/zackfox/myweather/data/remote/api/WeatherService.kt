@@ -1,10 +1,11 @@
-package ru.zackfox.myweather.data.network
+package ru.zackfox.myweather.data.remote.api
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.zackfox.myweather.BuildConfig
+import ru.zackfox.myweather.data.remote.interceptor.ApiKeyInterceptor
 
 object WeatherService {
     val retrofit: WeatherApi
@@ -25,5 +26,5 @@ object WeatherService {
             .create(WeatherApi::class.java)
     }
 
-    fun api (): WeatherApi = this.retrofit
+    fun api (): WeatherApi =  retrofit
 }
