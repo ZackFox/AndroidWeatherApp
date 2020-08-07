@@ -17,6 +17,7 @@ class WeatherRepositoryImpl (
 ): WeatherRepository {
 
     override suspend fun getCurrentWeather(lat: Double,lon: Double,lang: String, units: String ): CurrentEntity {
+
         return try {
                 if(!networkHelper.isNetworkConnected()){
                     // from database

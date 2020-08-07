@@ -1,9 +1,10 @@
 package ru.zackfox.myweather.ui
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.zackfox.myweather.R
@@ -16,60 +17,32 @@ import ru.zackfox.myweather.util.NetworkHelper
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var mainViewModel: MainViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mainViewModel = MainViewModel(
-            WeatherRepositoryImpl(
-                WeatherLocalDatasourceImpl(
-                    WeatherDb.getInstance(this.applicationContext)
-                ),
-                WeatherRemoteDatasourceImpl(
-                    WeatherService
-                ),
-                NetworkHelper(this.applicationContext)
-            )
-        )
-    
-        // get data from network || database
-        mainViewModel.getCurrentWeather(53.41, 59.04, "ru", "M")
+        setupFragment(CurrentWeatherFragment());
 
-        // show loading
-//        mainViewModel.loading.observe(this, Observer{
-//            if (it) {
-//                loading.visibility = View.VISIBLE
-//                home_text.visibility = View.GONE
-//            }
-//            else {
-//                loading.visibility = View.GONE
-//                home_text.visibility = View.VISIBLE
-//            }
-//        })
-
-        // show data
-        mainViewModel.currentWeather.observe(this, Observer {
-            if(it == null) return@Observer
-            loading.visibility = View.GONE
-            updateLocationTitle(it.cityName,"Сегодня")
-            updateTemperature(it.temperature.toInt().toString(), "M")
-
-            GlideApp
-                .with(this)
-                .load("https://www.weatherbit.io/static/img/icons/${it.weatherIcon}.png")
-                .into(weather_icon)
-        })
+        // navigation selection
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.current_weather -> {
+                    setupFragment(CurrentWeatherFragment())
+                    true
+                }
+                R.id.daily_weather -> {
+                    setupFragment(DailyWeatherFragment())
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
-    private fun updateLocationTitle(location: String, date: String){
-        topToolBar.title = location
-        topToolBar.subtitle = date
-    }
-
-    private fun updateTemperature(temperature: String, units: String){
-        val _units = if (units == "M") "°C" else "°F"
-        view_temperature.text = "$temperature $_units"
+    private fun setupFragment(fragment: Fragment): Int {
+        return supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
     }
 }

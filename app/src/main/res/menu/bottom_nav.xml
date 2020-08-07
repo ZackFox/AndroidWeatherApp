@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/currentWeather"
+        android:id="@+id/current_weather"
         android:icon="@drawable/ic_today"
         android:title="Today"
         />
 
     <item
-        android:id="@+id/dailyWeather"
+        android:id="@+id/daily_weather"
         android:icon="@drawable/ic_daily"
         android:title="daily"
         />
