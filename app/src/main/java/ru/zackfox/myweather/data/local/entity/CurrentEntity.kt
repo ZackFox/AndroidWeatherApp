@@ -6,11 +6,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "current_weather")
 data class CurrentEntity(
-    @ColumnInfo(name = "lat") val lat: Double,
-    @ColumnInfo(name = "lon") val lon: Double,
-    @ColumnInfo(name = "city_name") val cityName: String,
-    @ColumnInfo(name = "country_code") val countryСode: String,
-    @ColumnInfo(name = "timezone") val timezone: String,
     @ColumnInfo(name = "temperature") val temperature: Double,
     @ColumnInfo(name = "feelsLike") val feelsLike: Double,
     @ColumnInfo(name = "pressure") val pressure: Double,
