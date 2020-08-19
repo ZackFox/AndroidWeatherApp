@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">MyWeather</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="location">Местоположение</string>
+
+    <string name="device_location_title">Определять местоположения</string>
+    <string name="device_location_desc">Позволить определять местоположение</string>
+
+    <string name="custom_location_title">Указать местоположение</string>
+    <string name="custom_location_desc">Введите название места</string>
+
+    <string name="units">Метрика</string>
+    <string name="unit__system_title">Система единиц</string>
 </resources>

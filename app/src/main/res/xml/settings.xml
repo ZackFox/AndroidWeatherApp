@@ -1,0 +1,33 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/location">
+
+        <SwitchPreference
+            android:key="USE_DEVICE_LOCATION"
+            android:title="@string/device_location_title"
+            android:summary="@string/device_location_desc"
+            android:defaultValue="false"
+            android:disableDependentsState="true"/>
+
+        <EditTextPreference
+            android:key="CUSTOM_LOCATION"
+            android:title="@string/custom_location_title"
+            android:summary="@string/custom_location_desc"
+            android:defaultValue="Москва"
+            android:dependency="USE_DEVICE_LOCATION"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/units">
+
+        <ListPreference
+            android:key="UNIT_SYSTEM"
+            android:title="@string/unit__system_title"
+            android:defaultValue="METRIC"
+            android:entries="@array/units_entries"
+            android:entryValues="@array/units_values"
+            android:summary="%s" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
